@@ -44,5 +44,62 @@ print(f"Your total bill is Ticket(${bill}) + Extra Charge(${photo_charge}) = ${b
   </div>
   <button id="run">Run</button>
 
+  <!-- Load Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+  <script>
+    let pyodideReadyPromise = loadPyodide();
+
+    async function customInput(promptText) {
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML += promptText;
+
+      const inputField = document.createElement("input");
+      inputField.type = "text";
+      inputField.className = "input-line";
+      outputDiv.appendChild(inputField);
+      inputField.focus();
+
+      return new Promise((resolve) => {
+        inputField.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            const value = inputField.value;
+            outputDiv.removeChild(inputField);
+            outputDiv.innerHTML += value + "\n";
+            resolve(value);
+          }
+        });
+      });
+    }
+
+    document.getElementById("run").addEventListener("click", async () => {
+      const code = document.getElementById("code").value;
+      const outputDiv = document.getElementById("output");
+      outputDiv.textContent = "Running...\n";
+
+      const pyodide = await pyodideReadyPromise;
+
+      pyodide.setStdout({
+        batched: (text) => {
+          outputDiv.textContent += text;
+          outputDiv.scrollTop = outputDiv.scrollHeight;
+        },
+      });
+      pyodide.setStderr({
+        batched: (text) => {
+          outputDiv.textContent += text;
+          outputDiv.scrollTop = outputDiv.scrollHeight;
+        },
+      });
+
+      // Expose custom async input
+      pyodide.globals.set("input", customInput);
+
+      try {
+        await pyodide.runPythonAsync(code, { globals: pyodide.globals });
+      } catch (err) {
+        outputDiv.textContent += "\nError:\n" + err;
+      }
+    });
+  </script>
 </body>
 </html>
