@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- WELCOME! IF YOU ARE A BEGINNER READ THIS
+    - Find and replace text inside text area with id = "code" with your python code
+    - I MPORTANT: It's absolutely crucial that your python code within the 
+        text-area is indented correctly
+    - Feel free to change styles using css to suit your taste!
+    - Save and tpublish, it's pretty simple, you can youtube how to put a simple html page on github
+    - Have fun! 
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python 3 Runner (Pyodide)</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div id="container">
+    <textarea id="code">
+    print("Welcome to the rollercoaster!")
+height = int(await input("What is your height in cm? "))
+bill = 0
+if height >= 120:
+    print("You can ride the rollercoaster!")
+    age = int(await input("What is your age? "))
+    if age <= 12:
+        bill = 5
+        print(f"Your ticket is ${bill}")
+    elif age <= 18:
+        bill = 7
+        print(f"Your ticket is ${bill}")
+    else:
+        bill = 10
+        print(f"Your ticket is ${bill}")
+else:
+    print("Sorry you have to grow taller before you can ride.")
+    exit()
+
+photo_charge = 0
+photo_answer = (await input("Would you like a photo service for extra price of $3?(y/n): ")).lower()
+if photo_answer == "y" or photo_answer == "yes":
+    photo_charge += 3
+    print("You have chosen to opt-in for the photo service")
+elif photo_answer == "n" or photo_answer == "no":
+    print("You have chosen to skip the photo service")
+
+print(f"Your total bill is Ticket(${bill}) + Extra Charge(${photo_charge}) = ${bill + photo_charge}")</textarea>
+    <div id="output"></div>
+  </div>
+  <button id="run">Run</button>
+
+</body>
+</html>
