@@ -12,6 +12,11 @@
 ### 3 - Host it wherever you want :)
 ### 4 - (Optional) Open and test by clicking run!
 
+IMPORTANT: It's absolutely crucial that your python code within the text-area is indented correctly. 
+    - This means you can't have space between <textarea>tags and start/end of your code 
+        <textarea id="code">print("Welcome to the rollercoaster!")<textarea/> 
+        observe how there's no spaces in start and end between code and tag
+
 Note for beginners -  you can play around with the text live but it won't save so any permenant changes will have to be made in html file that you are hosting. 
 
 Give it a star if it saved you a few $
