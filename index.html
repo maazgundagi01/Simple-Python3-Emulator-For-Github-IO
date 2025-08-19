@@ -6,7 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Python 3 Runner (Pyodide)</title>
   <style>
-    
+    body {
+      margin: 0;
+      font-family: monospace, monospace;
+      background: #1e1e1e;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #container {
+      flex: 1;
+      display: flex;
+    }
+    textarea {
+      width: 50%;
+      height: 100%;
+      background: #2d2d2d;
+      color: #cfcfcf;
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 1em;
+      border: none;
+      resize: none;
+    }
+    #output {
+      width: 50%;
+      height: 100%;
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 1em;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    button {
+      padding: 1em;
+      background: #3a3d41;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #505357;
+    }
+    .input-line {
+      background: none;
+      border: none;
+      color: #0f0;
+      font-family: monospace;
+      font-size: 1rem;
+      outline: none;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
