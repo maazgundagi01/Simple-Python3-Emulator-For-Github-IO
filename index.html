@@ -5,6 +5,7 @@
     - This means you can't have space between <textarea>tags and start/end of your code 
         <textarea id="code">print("Welcome to the rollercoaster!")<textarea/> 
         observe how there's no spaces in start and end between code and tag
+    - Put 'Await' before any input in python so height = int(input("What is your height?")) becomes height = int(await input("What is your height?"))
     - Feel free to change styles using css to suit your taste!
     - Save and tpublish, it's pretty simple, you can youtube how to put a simple html page on github
     - Have fun! 
@@ -75,11 +76,11 @@
 <body>
   <div id="container">
     <textarea id="code">print("Welcome to the rollercoaster!")
-height = int(await input("What is your height in cm? "))
+height = int(await input(" What is your height in cm? "))
 bill = 0
 if height >= 120:
     print("You can ride the rollercoaster!")
-    age = int(await input("What is your age? "))
+    age = int(await input(" What is your age? "))
     if age <= 12:
         bill = 5
         print(f"Your ticket is ${bill}")
@@ -89,19 +90,27 @@ if height >= 120:
     else:
         bill = 10
         print(f"Your ticket is ${bill}")
+    photo_charge = 0
+    photo_answer = (await input("Would you like a photo service for extra price of $3?(y/n): ")).lower()
+    if photo_answer == "y" or photo_answer == "yes":
+        photo_charge += 3
+        print("You have chosen to opt-in for the photo service")
+    elif photo_answer == "n" or photo_answer == "no":
+        print("You have chosen to skip the photo service")
+    else:
+        print("sorry your input was invalid, please type 'y' for yes and 'n' for no")
+        photo_answer = (await input("Would you like a photo service for extra price of $3?(y/n): ")).lower()
+        if photo_answer == "y" or photo_answer == "yes":
+            photo_charge += 3
+            print("You have chosen to opt-in for the photo service")
+        elif photo_answer == "n" or photo_answer == "no":
+            print("You have chosen to skip the photo service")
+        else:
+            print("You put wrong answer twice, the program is terminated, please try again with valid inputs thanks!")
+            exit()
+    print(f"Your total bill is Ticket(${bill}) + Extra Charge(${photo_charge}) = ${bill + photo_charge}")
 else:
-    print("Sorry you have to grow taller before you can ride.")
-    exit()
-
-photo_charge = 0
-photo_answer = (await input("Would you like a photo service for extra price of $3?(y/n): ")).lower()
-if photo_answer == "y" or photo_answer == "yes":
-    photo_charge += 3
-    print("You have chosen to opt-in for the photo service")
-elif photo_answer == "n" or photo_answer == "no":
-    print("You have chosen to skip the photo service")
-
-print(f"Your total bill is Ticket(${bill}) + Extra Charge(${photo_charge}) = ${bill + photo_charge}")</textarea>
+    print("Sorry you have to grow taller before you can ride.Come back later!")</textarea>
     <div id="output"></div>
   </div>
   <button id="run">Run</button>
